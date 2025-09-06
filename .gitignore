@@ -7,3 +7,4 @@ mlruns/
 .DS_Store
 EOF
 venv_gpu/
+notes.md
