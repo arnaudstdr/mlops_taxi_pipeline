@@ -16,6 +16,39 @@ def download_month(month: str, year: str = "2023") -> str:
         print(f"✅ Déjà téléchargé : {local_path}")
     return local_path
 
-def load_parquet(path: str, use_cols: list[str] = None) -> pd.DataFrame:
-    """Charge un parquet avec colonnes optionnelles."""
-    return pd.read_parquet(path, columns=use_cols)
+from typing import Optional, List
+
+
+def load_parquet(path: str, use_cols: Optional[List[str]] = None) -> pd.DataFrame:
+    """Charge un parquet avec colonnes optionnelles (sélection insensible à la casse).
+
+    Paramètres
+    ----------
+    path : str
+        Chemin du fichier parquet.
+    use_cols : list[str] | None
+        Liste de colonnes demandées (casse ignorée). Si None, retourne tout.
+
+    Notes
+    -----
+    - On lit d'abord tout le fichier si une normalisation est nécessaire car
+      pyarrow/pandas exigent les noms exacts.
+    - Les colonnes non trouvées sont ignorées avec un avertissement.
+    """
+    df = pd.read_parquet(path)
+    if not use_cols:
+        return df
+
+    # Mapping insensible à la casse -> nom original
+    lower_map = {c.lower(): c for c in df.columns}
+    selected_real = []
+    for col in use_cols:
+        key = col.lower()
+        if key in lower_map:
+            selected_real.append(lower_map[key])
+        else:
+            print(f"[WARN] Colonne demandée absente (ignorée): {col}")
+    if not selected_real:
+        print("[WARN] Aucune des colonnes demandées trouvée, retour complet.")
+        return df
+    return df[selected_real]
