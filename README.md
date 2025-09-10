@@ -1,5 +1,15 @@
 # MLOps Taxi Pipeline
 
+[![Licence](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/python-3.10+-blue.svg?logo=python)](https://www.python.org/)
+[![Docker](https://img.shields.io/badge/docker-%2019.03%2B-blue?logo=docker)](https://www.docker.com/)
+[![MLflow](https://img.shields.io/badge/MLflow-2.0+-orange?logo=apache)](https://mlflow.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.95.0-green?logo=fastapi)](https://fastapi.tiangolo.com/)
+[![Grafana](https://img.shields.io/badge/grafana-%209.0%2B-F46800?logo=grafana)](https://grafana.com/)
+[![Last Commit](https://img.shields.io/github/last-commit/arnaudstdr/mlops_taxi_pipeline)](https://github.com/arnaudstdr/mlops_taxi_pipeline/commits)
+[![GitHub Stars](https://img.shields.io/github/stars/arnaudstdr/mlops_taxi_pipeline?style=social)](https://github.com/arnaudstdr/mlops_taxi_pipeline/stargazers)
+
+
 **Un pipeline MLOps end-to-end pour la prédiction de courses de taxi, avec monitoring avancé et détection de dérive.**
 
 ---
