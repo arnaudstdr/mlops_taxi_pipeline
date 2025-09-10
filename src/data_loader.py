@@ -22,18 +22,9 @@ from typing import Optional, List
 def load_parquet(path: str, use_cols: Optional[List[str]] = None) -> pd.DataFrame:
     """Charge un parquet avec colonnes optionnelles (sélection insensible à la casse).
 
-    Paramètres
-    ----------
-    path : str
-        Chemin du fichier parquet.
-    use_cols : list[str] | None
-        Liste de colonnes demandées (casse ignorée). Si None, retourne tout.
-
-    Notes
-    -----
-    - On lit d'abord tout le fichier si une normalisation est nécessaire car
-      pyarrow/pandas exigent les noms exacts.
-    - Les colonnes non trouvées sont ignorées avec un avertissement.
+    - Toujours lire tout le fichier (ne jamais passer columns=... à read_parquet)
+    - Sélectionner les colonnes demandées après lecture, en ignorant la casse
+    - Les colonnes absentes sont ignorées avec un avertissement
     """
     df = pd.read_parquet(path)
     if not use_cols:
