@@ -13,7 +13,7 @@ def preprocess(df: pd.DataFrame) -> pd.DataFrame:
     """Nettoyage + feature engineering."""
 
     # Converion datetime
-    df["pickup_dt"] = pd.to_datetime(df["tpep_pickup_datetume"])
+    df["pickup_dt"] = pd.to_datetime(df["tpep_pickup_datetime"])
     df["dropoff_dt"] = pd.to_datetime(df["tpep_dropoff_datetime"])
 
     # Cible : durée de trajet
